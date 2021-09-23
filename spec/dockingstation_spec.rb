@@ -24,7 +24,7 @@ describe DockingStation do
     dockingstation = DockingStation.new
     bike = Bike.new
     dockingstation.dock(bike)
-    expect(dockingstation.dockedbike.first.instance_of? Bike).to eq true
+    expect(dockingstation.dockedbikes.first.instance_of? Bike).to eq true
   end
 
   it "sends an error message if you try and release a bike ane there are none" do
@@ -36,8 +36,10 @@ describe DockingStation do
   it "sends error message if person dock bike if full" do
     dockingstation = DockingStation.new
     bike = Bike.new 
-    dockingstation.dock(bike)
+    DockingStation::DEFAULT_CAPACITY.times { dockingstation.dock(bike) }
     expect {dockingstation.dock(bike)}.to raise_error
-  end 
+  end
+  
+  
 end
 
