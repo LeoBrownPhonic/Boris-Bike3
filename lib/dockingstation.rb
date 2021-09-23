@@ -8,6 +8,9 @@ attr_reader :dockedbike
 
   def release_bike?
     # Ask docking station to release bike
+    if @dockedbike.empty?
+      raise
+    end
     bike = Bike.new
   end
 
