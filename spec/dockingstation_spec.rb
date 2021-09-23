@@ -6,13 +6,13 @@ describe DockingStation do
     # return_object = subject.release_bike?
     bike = Bike.new
     subject.dock(bike) 
-    expect(subject.release_bike?.instance_of? Bike).to eq true 
+    expect(subject.release_bike.instance_of? Bike).to eq true 
   end
   
   it "gets bike and checks its working" do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.release_bike?.working?).to eq true
+    expect(subject.release_bike.working?).to eq true
   end
 
   it "registers a docked bike" do
@@ -29,7 +29,15 @@ describe DockingStation do
 
   it "sends an error message if you try and release a bike ane there are none" do
     dockingstation = DockingStation.new
-    expect { dockingstation.release_bike? dockingstation.dockedbike.empty? }.to raise_error 
+    bike = Bike.new 
+    expect { dockingstation.release_bike }.to raise_error 
   end
+
+  it "sends error message if person dock bike if full" do
+    dockingstation = DockingStation.new
+    bike = Bike.new 
+    dockingstation.dock(bike)
+    expect {dockingstation.dock(bike)}.to raise_error
+  end 
 end
 

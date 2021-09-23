@@ -6,7 +6,7 @@ attr_reader :dockedbike
   end
   
 
-  def release_bike?
+  def release_bike
     # Ask docking station to release bike
     if @dockedbike.empty?
       raise
@@ -15,6 +15,9 @@ attr_reader :dockedbike
   end
 
   def dock(bike_instance_being_docked)
+    if @dockedbike[0] != nil 
+      raise
+    end 
     @dockedbike.push(bike_instance_being_docked)
   end
 end
